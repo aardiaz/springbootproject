@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>title</title>
+   
+</head>
+
+<body>
+   <div th:insert="header.html"></div>
+
+	<h1 align="center">Student List</h1>
+	<hr>
+
+	<table id="myTable" class="table table-stripted">
+		<thead>
+			<tr class="success">
+				<td>FirstName</td>
+				<td>LastName</td>
+				<td>College</td>
+				<td>Phone</td>
+				<td>City</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<tr  th:each="student: ${slist}" class="danger">
+			
+				<td th:text="${student.fname}"></td>
+				<td th:text="${student.lname}"></td>
+				<td th:text="${student.college}"></td>
+				<td th:text="${student.phone}"></td>
+				<td th:text="${student.address.city}"></td>
+				<td>
+				   <a th:href="@{'/edit/'+${student.stdId}}">  <input class="btn btn-success" type="submit" value="Edit"></a>
+				   <a th:href="@{'/delete/'+${student.stdId}}"> <input class="btn btn-danger" type="submit" value="Delete"></a>
+				</td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+
+<script type="text/javascript">
+  
+  $(document).ready( function () {
+	    $('#myTable').DataTable();
+	});
+  
+  </script>
+
+</body>
+
+</html>
